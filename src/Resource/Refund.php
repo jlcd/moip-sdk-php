@@ -101,13 +101,23 @@ class Refund extends MoipResource
     }
 
     /**
+     * Get MoIP refund id.
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->getIfSet('id');
+    }
+
+    /**
      * Create a new refund in api MoIP.
      *
      * @param stdClass $data
      *
      * @return $this
      */
-    private function execute(stdClass $data = null)
+    public function execute(stdClass $data = null)
     {
         $body = empty($data) ? new stdClass() : $data;
         $response = $this->httpRequest($this->getPath(), Requests::POST, $body);
